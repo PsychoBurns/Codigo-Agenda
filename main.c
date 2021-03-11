@@ -17,7 +17,6 @@ struct Agenda
 
 /* DECLARAÇÃO DE VAIRAVEIS GLOBAIS*/
 int i = 0;
-int j = 1;
 /*FIM DA DECLARAÇÃO DE VARIAVEIS*/
 
 /* INICIO DA FUNÇÃO MENU
@@ -48,7 +47,7 @@ void menu()
 
         case 2:
             /* Listar */
-            listar();
+            
             break;
 
         case 3:
