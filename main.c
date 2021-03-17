@@ -47,7 +47,7 @@ void menu()
 
         case 2:
             /* Listar */
-            
+            listar();
             break;
 
         case 3:
@@ -78,15 +78,14 @@ void menu()
 void cadastro()
 {
     int opcCadastro;
-    int id = 0;
+    int id = 1;
+    printf("____________________________\n");
+    printf("|  CADASTRO DE CONTATO     |\n");
+    printf("|__________________________|\n");
 
     for (i = 0; i < 10; i++)
     {
-        if (i < 10)
-        {
-            printf("____________________________\n");
-            printf("|  CADASTRO DE CONTATO     |\n");
-            printf("|__________________________|\n");
+
             agenda[i].id = id++;
             printf("Nome Completo: \n");
             fflush(stdin);
@@ -108,22 +107,19 @@ void cadastro()
             printf("|__________________________________|\n");
 
             i = i++;
-        }
-        else
-            printf("Agenda Cheia");
-
-        printf("Deseja realizar outro cadastro?\n ");
-        printf("________________\n");
-        printf("| [1] -[SIM]   |\n");
-        printf("| [2] -[NAO]   |\n");
-        printf("|______________|\n");
-        scanf("%d", &opcCadastro);
+            printf("Deseja realizar outro cadastro?\n ");
+            printf("________________\n");
+            printf("| [1] -[SIM]   |\n");
+            printf("| [2] -[NAO]   |\n");
+            printf("|______________|\n");
+            scanf("%d", &opcCadastro);
         if (opcCadastro == 2)
         {
             break;
         }
+        
     }
-    return (0);
+    return(0);
 }
 /* FIM DA FUNÇÃO CADASTRAR CONTATO*/
 
@@ -136,6 +132,23 @@ void listar()
     printf("____________________________\n");
     printf("|   LISTAR CONTATOS        |\n");
     printf("|__________________________|\n");
+
+    do
+    {
+        for (i = 0; i < 10 && agenda[i].id > 0; i++)
+        {
+            printf("__________________________________\n");
+            printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id,agenda[i].nome,agenda[i].telefone);
+            printf("__________________________________\n");
+
+        }
+        printf("Deseja continuar?\n ");
+        printf("________________\n");
+        printf("| [1] -[SIM]   |\n");
+        printf("| [2] -[NAO]   |\n");
+        printf("|______________|\n");
+        scanf("%d", &opcListar);
+    } while (opcListar == 1);
 }
 /* FIM DA FUNÇÃO LISTAR*/
 
