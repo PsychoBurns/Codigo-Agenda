@@ -159,6 +159,7 @@ void buscar()
     int opcIdBuscar;
     int idBusca;
     char nomeBusca[100];
+    int idEncontrou;
 
     printf("____________________________\n");
     printf("|      BUSCAR CONTATO      |\n");
@@ -181,15 +182,20 @@ void buscar()
 
             for (i = 0; i < 10 && agenda[i].id > 0; i++)
             {
-                if (strcmp(nomeBusca, agenda[i].nome) == 0)) 
-                {
-                    printf("____\n");
-                    printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
-                    printf("____\n");
-                }
-                else
-                    printf("Não possui contato com esse codigo!");
+                if (strcmp(nomeBusca, agenda[i].nome) == 0)
+                    {
+                        printf("____\n");
+                        printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
+                        printf("____\n");
+                        idEncontrou = 1;
+                    }
             }
+
+            if (idEncontrou == 0)
+            {
+                printf("Não possui contato com esse codigo!");
+            }
+
             break;
 
         case 2:
@@ -203,10 +209,14 @@ void buscar()
                     printf("____\n");
                     printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
                     printf("____\n");
+                    idEncontrou = 1;
                 }
-                else
-                    printf("Não possui contato com esse codigo!");
             }
+            if (idEncontrou == 0)
+            {
+                printf("Não possui contato com esse codigo!");
+            }
+
             break;
         default:
             break;
