@@ -52,6 +52,7 @@ void menu()
 
         case 3:
             /* Buscar */
+            buscar();
             break;
 
         case 4:
@@ -86,40 +87,39 @@ void cadastro()
     for (i = 0; i < 10; i++)
     {
 
-            agenda[i].id = id++;
-            printf("Nome Completo: \n");
-            fflush(stdin);
-            scanf("%s", agenda[i].nome);
-            printf("Telefone | Ex: (00) 0000-0000 \n");
-            fflush(stdin);
-            scanf("%s", agenda[i].telefone);
-            printf("Email: \n");
-            fflush(stdin);
-            scanf("%s", agenda[i].email);
-            printf("Data de Nascimento | Ex: dd/mm/aaaa \n");
-            fflush(stdin);
-            scanf("%s", agenda[i].dataNascimento);
-            printf("Observação sobre o contato: \n");
-            fflush(stdin);
-            scanf("%s", agenda[i].obs);
-            printf("____________________________________\n");
-            printf("| Cadastro realizado com sucesso ! |\n");
-            printf("|__________________________________|\n");
+        agenda[i].id = id++;
+        printf("Nome Completo: \n");
+        fflush(stdin);
+        scanf("%s", agenda[i].nome);
+        printf("Telefone | Ex: (00) 0000-0000 \n");
+        fflush(stdin);
+        scanf("%s", agenda[i].telefone);
+        printf("Email: \n");
+        fflush(stdin);
+        scanf("%s", agenda[i].email);
+        printf("Data de Nascimento | Ex: dd/mm/aaaa \n");
+        fflush(stdin);
+        scanf("%s", agenda[i].dataNascimento);
+        printf("Observação sobre o contato: \n");
+        fflush(stdin);
+        scanf("%s", agenda[i].obs);
+        printf("____________________________________\n");
+        printf("| Cadastro realizado com sucesso ! |\n");
+        printf("|__________________________________|\n");
 
-            i = i++;
-            printf("Deseja realizar outro cadastro?\n ");
-            printf("________________\n");
-            printf("| [1] -[SIM]   |\n");
-            printf("| [2] -[NAO]   |\n");
-            printf("|______________|\n");
-            scanf("%d", &opcCadastro);
+        i = i++;
+        printf("Deseja realizar outro cadastro?\n ");
+        printf("________________\n");
+        printf("| [1] -[SIM]   |\n");
+        printf("| [2] -[NAO]   |\n");
+        printf("|______________|\n");
+        scanf("%d", &opcCadastro);
         if (opcCadastro == 2)
         {
             break;
         }
-        
     }
-    return(0);
+    return (0);
 }
 /* FIM DA FUNÇÃO CADASTRAR CONTATO*/
 
@@ -138,9 +138,8 @@ void listar()
         for (i = 0; i < 10 && agenda[i].id > 0; i++)
         {
             printf("__________________________________\n");
-            printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id,agenda[i].nome,agenda[i].telefone);
+            printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
             printf("__________________________________\n");
-
         }
         printf("Deseja continuar?\n ");
         printf("________________\n");
@@ -157,12 +156,61 @@ void buscar()
 {
 
     int opcBusca;
+    int opcIdBuscar;
+    int idBusca;
+    char nomeBusca[100];
+
     printf("____________________________\n");
     printf("|      BUSCAR CONTATO      |\n");
     printf("|__________________________|\n");
 
     do
     {
+        printf("__________________________________________\n");
+        printf("| Deseja buscar o contato por qual opção:|\n");
+        printf("| [1] -[NOME]                            |\n");
+        printf("| [2] -[CODIGO]                          |\n");
+        printf("|________________________________________|\n");
+        scanf("%i", &idBusca);
+
+        switch (idBusca)
+        {
+        case 1:
+            printf("Informe o nome buscar: \n");
+            scanf("%s", nomeBusca);
+
+            for (i = 0; i < 10 && agenda[i].id > 0; i++)
+            {
+                if (strcmp(nomeBusca, agenda[i].nome) == 0)) 
+                {
+                    printf("____\n");
+                    printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
+                    printf("____\n");
+                }
+                else
+                    printf("Não possui contato com esse codigo!");
+            }
+            break;
+
+        case 2:
+            printf("Informe o codigo para buscar: \n");
+            scanf("%i", &idBusca);
+
+            for (i = 0; i < 10 && agenda[i].id > 0; i++)
+            {
+                if (idBusca == agenda[i].id)
+                {
+                    printf("____\n");
+                    printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
+                    printf("____\n");
+                }
+                else
+                    printf("Não possui contato com esse codigo!");
+            }
+            break;
+        default:
+            break;
+        }
 
         printf("Deseja realizar uma nova busca?\n ");
         printf("________________\n");
