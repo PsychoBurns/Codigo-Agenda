@@ -57,6 +57,7 @@ void menu()
 
         case 4:
             /* Alterar */
+            alterar();
             break;
         case 5:
             /* Excluir */
@@ -183,17 +184,17 @@ void buscar()
             for (i = 0; i < 10 && agenda[i].id > 0; i++)
             {
                 if (strcmp(nomeBusca, agenda[i].nome) == 0)
-                    {
-                        printf("____\n");
-                        printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
-                        printf("____\n");
-                        idEncontrou = 1;
-                    }
+                {
+                    printf("____\n");
+                    printf("Id : %d   Nome: %s  Telefone: %s \n", agenda[i].id, agenda[i].nome, agenda[i].telefone);
+                    printf("____\n");
+                    idEncontrou = 1;
+                }
             }
 
             if (idEncontrou == 0)
             {
-                printf("Não possui contato com esse codigo!");
+                printf("Não possui contato com esse nome!");
             }
 
             break;
@@ -236,21 +237,205 @@ void buscar()
 void alterar()
 {
 
+    int opcBusca;
+    int opcIdBuscar;
+    int idBusca;
+    char nomeBusca[100];
+    int idEncontrou;
+
     int opcAlterar;
+    char nome[100], telefone[20], email[100], obs[200];
+
     printf("____________________________\n");
-    printf("|    ALTERAR CONTATO       |\n");
+    printf("|      BUSCAR CONTATO      |\n");
     printf("|__________________________|\n");
 
     do
     {
+        printf("__________________________________________\n");
+        printf("| Deseja buscar o contato por qual opção:|\n");
+        printf("| [1] -[NOME]                            |\n");
+        printf("| [2] -[CODIGO]                          |\n");
+        printf("|________________________________________|\n");
+        scanf("%i", &idBusca);
 
-        printf("Deseja realizar outra alteração?\n ");
+        switch (idBusca)
+        {
+        case 1:
+            printf("Informe o nome buscar: \n");
+            scanf("%s", nomeBusca);
+
+            for (i = 0; i < 10 && agenda[i].id > 0; i++)
+            {
+                if (strcmp(nomeBusca, agenda[i].nome) == 0)
+                {
+                    printf("__________________________________________\n");
+                    printf("| Deseja alterar qual campo:             |\n");
+                    printf("| [1] -[NOME]                            |\n");
+                    printf("| [2] -[TELEFONE]                        |\n");
+                    printf("| [3] -[EMAIL]                           |\n");
+                    printf("| [4] -[OBSEVAÇÕES]                      |\n");
+                    printf("|________________________________________|\n");
+                    scanf("%i", &opcAlterar);
+                    switch (opcAlterar)
+                    {
+                    case 1:
+                        printf("____________________________\n");
+                        printf("|      ALTERAR NOME        |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", nome);
+
+                        strcpy(agenda->nome, nome);
+
+                        printf("Nome substituido com sucesso!");
+                        break;
+                    case 2:
+                        printf("____________________________\n");
+                        printf("|      ALTERAR TELEFONE    |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", telefone);
+
+                        strcpy(agenda->telefone, telefone);
+
+                        printf("Telefone substituido com sucesso!\n");
+                        break;
+                    case 3:
+                        printf("____________________________\n");
+                        printf("|      ALTERAR EMAIL       |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", email);
+
+                        strcpy(agenda->email, email);
+
+                        printf("Email substituido com sucesso!\n");
+                        break;
+                    case 4:
+                        printf("____________________________\n");
+                        printf("|     ALTERAR OBSERVAÇÃO   |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", obs);
+
+                        strcpy(agenda->obs, obs);
+
+                        printf("Telefone substituido com sucesso!\n");
+                        break;
+                    default:
+                        break;
+                    }
+                    idEncontrou = 1;
+                }
+            }
+
+            if (idEncontrou == 0)
+            {
+                printf("Não possui contato com esse codigo!\n");
+            }
+
+            break;
+
+        case 2:
+            printf("Informe o codigo para buscar: \n");
+            scanf("%i", &idBusca);
+
+            for (i = 0; i < 10 && agenda[i].id > 0; i++)
+            {
+                
+                if (idBusca == agenda[i].id)
+                {
+                   /*Apos o usuario digitar o codigo, o sistema ira verificar se o codigo e valido, se for abrira
+                   para saber o que o usuario deseja alterar*/
+                    printf("__________________________________________\n");
+                    printf("| Deseja alterar qual campo:             |\n");
+                    printf("| [1] -[NOME]                            |\n");
+                    printf("| [2] -[TELEFONE]                        |\n");
+                    printf("| [3] -[EMAIL]                           |\n");
+                    printf("| [4] -[OBSEVAÇÕES]                      |\n");
+                    printf("|________________________________________|\n");
+                    scanf("%i", &opcAlterar);
+                    switch (opcAlterar)
+                    {
+
+                    /*Assim que seleciaonar a opcao desejada, sera informado para ser digitado a infomação para ser substituida */
+                    case 1:
+                        printf("____________________________\n");
+                        printf("|      ALTERAR NOME        |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", nome);
+                    /* A função abaixo ira ira copiar a string digitada acima, para dentro da string existente
+                        assim fazendo a alteração, essa sixtanxe serve para todo o sistema de alterção do sistema */
+                        strcpy(agenda->nome, nome);
+
+                        printf("Nome substituido com sucesso!\n");
+                        break;
+                    case 2:
+                        printf("____________________________\n");
+                        printf("|      ALTERAR TELEFONE    |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", telefone);
+
+                        strcpy(agenda->telefone, telefone);
+
+                        printf("Telefone substituido com sucesso!\n");
+                        break;
+                    case 3:
+                        printf("____________________________\n");
+                        printf("|      ALTERAR EMAIL       |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", email);
+
+                        strcpy(agenda->email, email);
+
+                        printf("Email substituido com sucesso!\n");
+                        break;
+                    case 4:
+                        printf("____________________________\n");
+                        printf("|     ALTERAR OBSERVAÇÃO   |\n");
+                        printf("|__________________________|\n");
+
+                        printf("Infirme o novo nome para substituir o atual:\n");
+                        scanf("%s", obs);
+
+                        strcpy(agenda->obs, obs);
+
+                        printf("Telefone substituido com sucesso!\n");
+                        break;
+                    default:
+                        break;
+                    }
+                    idEncontrou = 1;
+                }
+            }
+            if (idEncontrou == 0)
+            {
+                printf("Não possui contato com esse codigo!\n");
+            }
+
+            break;
+        default:
+            break;
+        }
+
+        printf("Deseja realizar uma nova busca?\n ");
         printf("________________\n");
         printf("| [1] -[SIM]   |\n");
         printf("| [2] -[NAO]   |\n");
         printf("|______________|\n");
-        scanf("%d", &opcAlterar);
-    } while (opcAlterar == 1);
+        scanf("%d", &opcBusca);
+    } while (opcBusca == 1);
 }
 /* FIM DA FUNÇÃO ALTERAR CONTATO*/
 
