@@ -61,6 +61,7 @@ void menu()
             break;
         case 5:
             /* Excluir */
+            excluir();
             break;
         case 0:
             /* Sair */
@@ -347,10 +348,10 @@ void alterar()
 
             for (i = 0; i < 10 && agenda[i].id > 0; i++)
             {
-                
+
                 if (idBusca == agenda[i].id)
                 {
-                   /*Apos o usuario digitar o codigo, o sistema ira verificar se o codigo e valido, se for abrira
+                    /*Apos o usuario digitar o codigo, o sistema ira verificar se o codigo e valido, se for abrira
                    para saber o que o usuario deseja alterar*/
                     printf("__________________________________________\n");
                     printf("| Deseja alterar qual campo:             |\n");
@@ -371,7 +372,7 @@ void alterar()
 
                         printf("Infirme o novo nome para substituir o atual:\n");
                         scanf("%s", nome);
-                    /* A função abaixo ira ira copiar a string digitada acima, para dentro da string existente
+                        /* A função abaixo ira ira copiar a string digitada acima, para dentro da string existente
                         assim fazendo a alteração, essa sixtanxe serve para todo o sistema de alterção do sistema */
                         strcpy(agenda->nome, nome);
 
@@ -444,14 +445,26 @@ void excluir()
 {
 
     int opcExcluir;
+    int codigo;
     printf("____________________________\n");
     printf("|    EXCLUIR CONTATO       |\n");
     printf("|__________________________|\n");
 
     do
     {
-
-        printf("Deseja realizar outro contato?\n ");
+        /* Usuario ira informar o codigo do contato que sera apagado, apos digitado, ele ira ser verificado, e caso atenda a condição, o contato sera apagado*/
+        printf("Digite o codigo do contato para ser apagado:");
+        scanf("%i", &codigo);
+        for (i = 0; i < 10 && agenda[i].id > 0; i++)
+        {
+            if (codigo == agenda->id)
+            {
+                agenda->id = 0;
+                break;
+            }
+            
+        }
+        printf("Deseja continuar?\n ");
         printf("________________\n");
         printf("| [1] -[SIM]   |\n");
         printf("| [2] -[NAO]   |\n");
